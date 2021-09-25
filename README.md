@@ -4,7 +4,7 @@ Based on the JAVA computing vision library [BoofCV](https://boofcv.org/index.php
 
 The QR codes are read from frames captured with OpenCV. Up to 4 cameras can be setup for continuous capture. The process of frame capturing and QR code decoding is handled on a non blocking dedicated [thread](https://docs.python.org/3/library/threading.html). 
 
-The API responses are given in JSON format with the images being returned in base64 strings. 
+The API responses are given in JSON format with the images being returned as base64 strings. 
 
 ### 1. Known limitations:
 
@@ -15,19 +15,13 @@ The API responses are given in JSON format with the images being returned in bas
 ### 2. Installation
 
 1. Make sure to have Python 3.7 or earlier installed.
-2. Install [Pyboof](https://github.com/lessthanoptimal/PyBoof) from source:
-	1. `git clone --recursive https://github.com/lessthanoptimal/PyBoof.git`
-	2. `cd Pyboof`
-	3. Create and activate a Python virtual environment:
-		1. `python3 -m venv venv`
-		2. `source venv/bin/activate`
-	4. Install pip dependencies: `pip3 install -r requirements.txt`
-	5. `./setup.py build`
-	6. `./setup.py install`
-	
-3. With the venv still active, clone the API's repository:
-	1. `git clone`
-	
+2. Clone the API's repository: `git clone https://github.com/GilsonFrias/QRCscan_API.git`
+3. Access the repository folder: `cd QRCscan_API`
+4. Create and activate a Python virtual environment:
+   1. `python3 -m venv venv`
+   2. `source venv/bin/activate`
+5. Install pip dependencies: `pip3 install -r requirements.txt`
+6. Run Django server: `python manage.py runserver` 	
 
 ### 3. API call examples
 
@@ -94,7 +88,7 @@ The API responses are given in JSON format with the images being returned in bas
 }
 ```
 
-- In case the capture loop is stopped, make a GET request to http://127.0.0.1:8000/start in order to start capturing and decoding frames in a new thread. The JSON response will be similar to the response obtained by making a GET request to http://127.0.0.1:8000 (with the *is_capturing* flag set to **true**.
+- In case the capture loop is stopped, make a GET request to http://127.0.0.1:8000/start in order to start capturing and decoding frames in a new thread. The JSON response will be similar to the response obtained by making a GET request to http://127.0.0.1:8000 (with the *is_capturing* flag set to **true**).
 
 ```
 {

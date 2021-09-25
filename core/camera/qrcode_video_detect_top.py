@@ -15,7 +15,7 @@ def resize_img(img, scale_percent):
    resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
    return resized
 
-cap = cv2.VideoCapture(2)
+cap = cv2.VideoCapture(0)
 cap.set(3, 800) #It seams that the rotable cam only supports 640x480
 cap.set(4, 600)
 if not cap.isOpened():
@@ -43,6 +43,7 @@ in_color = (0, 255, 0)
 in_txt = 'Vehiculo en zona de carga'
 not_in_txt = 'Sin vehiculo en zona de carga'
 _data = ''
+print("Press q to stop capturing")
 while True:
    ret, frame = cap.read()
    if not ret:
@@ -60,10 +61,10 @@ while True:
       #print(data)
       #print(len(bboxes))
       #print(bboxes[0][0])
-      vertex0 = bboxes[0][0][0]
-      vertex1 = bboxes[0][1][0]
-      vertex2 = bboxes[0][2][0]
-      vertex3 = bboxes[0][3][0]
+      vertex0 = bboxes[0][0]
+      vertex1 = bboxes[0][1]
+      vertex2 = bboxes[0][2]
+      vertex3 = bboxes[0][3]
       #print('vertex0', vertex0)
       #print('vertex1', vertex1)
       #print('bound', int(result.shape[0]*0.3))

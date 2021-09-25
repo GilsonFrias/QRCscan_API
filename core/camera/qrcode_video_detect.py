@@ -38,9 +38,9 @@ t0 = 0
 t1 = 0
 n_frames = 0
 fps = 0
+print("Press q to stop capturing")
 while True:
    ret, frame = cap.read()
-   print(frame.shape)
    if not ret:
       print("Can't receive frame")
       break
