@@ -17,9 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from core.views import HomeView
 from core.views import DeviceView
+from core.views import StartCapturingView
+from core.views import StopCapturingView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='test'),
-    path('dev/', DeviceView.as_view(), name='devs') 
+    path('dev/', DeviceView.as_view(), name='devs'), 
+    path('start/', StartCapturingView.as_view(), name='start'),
+    path('stop/', StopCapturingView.as_view(), name='stop')
 ]

@@ -35,3 +35,17 @@ class DeviceView(APIView):
             _id = 0
       return Response({"cam-id":_id, "status":cam.status[_id], "QRC-data":cam.symbols[_id], "bboxes":cam.bboxes[_id], "img-base64":cam.encode64(_id)})
 
+class StartCapturingView(APIView):
+   def get(self, request, *args, **kwargs):
+      if not cam.is_capturing:
+         cam.is_capturing = True
+         # Initialize a new capturing loop on a separated thread
+         capture_thread = threading.Thread(target=cam.capture_loop)
+         capture_thread.start()
+      return Response({"status":cam.status, "is_capturing":cam.is_capturing, "is_drawing_bboxes":cam.is_drawing_bboxes, "FPS":cam.fps})
+
+class StopCapturingView(APIView):
+   def get(self, request, *args, **kwargs):
+      if cam.is_capturing:
+         cam.is_capturing = False
+      return Response({"status":cam.status, "is_capturing":cam.is_capturing, "is_drawing_bboxes":cam.is_drawing_bboxes, "FPS":cam.fps})
