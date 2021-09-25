@@ -1,0 +1,9 @@
+{
+  "img-zoom": 100,
+  "threshold-th": 120,
+  "threshold-max": 255,
+  "dilat-knl-shape": 5,
+  "roi-extent": 0.5,
+  "roi-area": 200,
+  "roi-zoom": 100
+}
