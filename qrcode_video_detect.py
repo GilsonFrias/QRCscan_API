@@ -2,7 +2,7 @@
 import cv2
 import numpy as np
 import pyboof as pb
-from QRCscan import QRCscanner
+from core.camera.QRCscan import QRCscanner
 import time
 
 detector = QRCscanner()

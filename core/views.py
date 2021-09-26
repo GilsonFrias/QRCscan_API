@@ -33,7 +33,7 @@ class DeviceView(APIView):
             return Response({"error":"id GET param must be an integer within range (0, {0})".format(len(cam.capture_devices)-1)})
          if (_id > len(cam.capture_devices)-1) or (_id < 0):
             _id = 0
-      return Response({"cam-id":_id, "status":cam.status[_id], "QRC-data":cam.symbols[_id], "bboxes":cam.bboxes[_id], "img-base64":cam.encode64(_id)})
+      return Response({"cam-id":_id, "status":cam.status[_id], "QRC-data":cam.symbols[_id], "bboxes":cam.bboxes[_id], "specs":cam.specs[_id], "img-base64":cam.encode64(_id)})
 
 class StartCapturingView(APIView):
    def get(self, request, *args, **kwargs):

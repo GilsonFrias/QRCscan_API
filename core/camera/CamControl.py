@@ -8,6 +8,7 @@ import base64
 import pyboof as pb
 from core.camera.QRCscan import QRCscanner
 #from QRCscan import QRCscanner
+import subprocess
 import time
 
 #TODO:
@@ -23,7 +24,8 @@ class Camera(object):
       self.frames = [None for n in range(len(self.capture_devices))]
       self.symbols = [None for n in range(len(self.capture_devices))]
       self.bboxes = [None for n in range(len(self.capture_devices))]
-      self.status = [None for n in range(len(self.capture_devices))]
+      self.status = [cap[1] for cap in caps]
+      self.specs = [cap[2] for cap in caps]
       self.time_stamps = [0]*len(self.capture_devices)
       self.is_capturing = False
       self.detector = QRCscanner()
@@ -40,6 +42,23 @@ class Camera(object):
          frame = base64.b64encode(frame)
       return frame
 
+   def get_device_description(self, source):
+      '''
+      Retrieve the camera description of a /dev/video{source} camera device by calling
+      on the v4l2-ctl --list-devices command
+      '''
+      #Confirm that v4l2-ctl is available
+      out, err = subprocess.Popen(["which", "v4l2-ctl"], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+      if len(out.decode())==0:
+         err = "v4l2-ctl not found"
+         return "", err
+      #cmd = ["/usr/bin/v4l2-ctl", "--list-devices"]
+      cmd = ["/usr/bin/v4l2-ctl", "-d{}".format(source), "-D"]
+      out, err = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+      desc = out.decode()
+      err = err.decode()
+      return desc, err
+
    def test_device(self, source):
       '''
       Test the state of a recording device /dev/video[source]
@@ -49,9 +68,10 @@ class Camera(object):
       status_msg = ""
       cap = cv2.VideoCapture(source)
       if cap is None or not cap.isOpened():
-         status="warning"
-         status_msg = "[Warning::QRCcam.test_device] unable to open video device: {0}".format(source)
+         status=None
+         status_msg = "[Warning::QRCcam.test_device] unable to open video device: /dev/video{0}".format(source)
          return (None, status, status_msg)
+      status_msg, _ = self.get_device_description(source) 
       return cap, status, status_msg
 
    def set_resolution(self, cap, w, h):
