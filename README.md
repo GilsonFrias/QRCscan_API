@@ -2,7 +2,7 @@
 
 Based on the JAVA computing vision library [BoofCV](https://boofcv.org/index.php?title=Performance:QrCode) and its Python wrapper [Pyboof](https://github.com/lessthanoptimal/PyBoof), this Django API provides access to the decoded data and bounding boxes of QR codes through simple HTTP endpoints. 
 
-The QR codes are read from frames captured with OpenCV. Up to 4 cameras can be setup for continuous capture. The process of frame capturing and QR code decoding is handled on a non blocking dedicated [thread](https://docs.python.org/3/library/threading.html). 
+The QR codes are read from frames captured with [OpenCV](https://github.com/opencv/opencv). Up to 4 cameras can be setup for continuous capture. The process of frame capturing and QR code decoding is handled on a non blocking dedicated [thread](https://docs.python.org/3/library/threading.html). 
 
 The API responses are given in JSON format with the images being returned as base64 strings. 
 
@@ -14,7 +14,7 @@ The API responses are given in JSON format with the images being returned as bas
 
 ### 2. Installation
 
-1. Make sure to have Python 3.7 or earlier installed.
+1. Make sure to have Python 3.7 or newer installed.
 2. Clone the API's repository: `git clone https://github.com/GilsonFrias/QRCscan_API.git`
 3. Access the repository folder: `cd QRCscan_API`
 4. Create and activate a Python virtual environment:
