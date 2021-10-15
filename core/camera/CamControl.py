@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Sep. 15, 2021. QR Code decoding and Camera handling/cheduling script by Gilson Frías for Nodrix.
+# Sep. 15, 2021. QR Code decoding and Camera handling/cheduling script by Gilson Frías.
 
 import cv2
 import numpy as np

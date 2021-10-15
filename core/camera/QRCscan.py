@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-#QRCscanner by Gilson Frías @ Nodrix, Sept. 9 2021
+#QRCscanner by Gilson Frías, Sept. 9 2021
 
 #This QR code scanner class is based on the Java library boofCV and its Python binding Pyboof. A comparison between boofCV and others libraries for QR code detection and decoding 
 #(such as zbar) can be found at: http://boofcv.org/index.php?title=Performance:QrCode
