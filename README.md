@@ -6,6 +6,8 @@ The QR codes are read from frames captured with [OpenCV](https://github.com/open
 
 The API responses are given in JSON format with the images being returned as base64 strings. 
 
+![](./qrscan.gif)
+
 ### 1. Known limitations:
 
 - A single Pyboof decoder instance is used to decode all frames, causing a considerable slow down in the pipeline when more than one camera is in use. This measure had to be taken due to the invoked JVM crashing when more than one decoder was instantiated. 
